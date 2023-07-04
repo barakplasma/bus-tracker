@@ -5,8 +5,8 @@ export class AppDB extends Dexie {
 
   constructor() {
     super('ngdexieliveQuery');
-    this.version(1).stores({
-      locations: '++id, geolocationposition',
+    this.version(4).stores({
+      locations: '++id, timestamp',
     });
   }
 }
