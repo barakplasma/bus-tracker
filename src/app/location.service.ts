@@ -24,10 +24,6 @@ export class LocationService {
     }, console.error)
   }
 
-  getLocation(): Observable<GeolocationPosition> {
-    return this.location;
-  }
-
   async getPermissionStatus() {
     const status = await navigator.permissions.query({name:'geolocation'});
     return status.state === 'granted'
