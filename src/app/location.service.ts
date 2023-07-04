@@ -21,6 +21,7 @@ export class LocationService {
     this.watcherId = navigator.geolocation.watchPosition((p) => {
       console.debug(p);
       this.locationSubject.next(p);
+
     }, console.error)
   }
 
