@@ -59,8 +59,9 @@ export class CanvasMapComponent implements AfterViewInit {
       throw new Error('cant draw new location')
     }
     const {latitude, longitude} = gl.coords;
-    const x = Math.round(this.centerX + latitude - this.firstLocation.coords.latitude);
-    const y = Math.round(this.centerY + longitude - this.firstLocation.coords.longitude);
+    const scale = 100000;
+    const x = Math.round(this.centerX + (latitude - this.firstLocation.coords.latitude)*scale);
+    const y = Math.round(this.centerY + (longitude - this.firstLocation.coords.longitude)*scale);
     return {x, y}
   }
 
