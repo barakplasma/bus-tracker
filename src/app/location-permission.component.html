@@ -1,0 +1,21 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Getting Started</mat-card-title>
+        <mat-card-subtitle>Allow location access</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+        <p>
+            Location access is needed in order to track the bus via your device's GPS sensor.
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="requestLocationPermission()" *ngIf="!hasLocation">
+            Give location permission
+        </button>
+        <button mat-button disabled *ngIf="hasLocation">
+            Location permission already granted
+        </button>
+    </mat-card-actions>
+</mat-card>
