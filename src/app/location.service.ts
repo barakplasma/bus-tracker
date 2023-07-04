@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
   private watcherId?: number;
-  private location?: GeolocationPosition;
+  private locationSubject: Subject<GeolocationPosition> = new Subject<GeolocationPosition>();
+  public location: Observable<GeolocationPosition> = this.locationSubject.asObservable();
 
   constructor() {
     this.getPermissionStatus().then(s => {
@@ -19,12 +20,12 @@ export class LocationService {
   requestLocationPermission() {
     this.watcherId = navigator.geolocation.watchPosition((p) => {
       console.debug(p);
-      this.location = p;
+      this.locationSubject.next(p);
     }, console.error)
   }
 
-  getLocation() {
-    return of(this.location);
+  getLocation(): Observable<GeolocationPosition> {
+    return this.location;
   }
 
   async getPermissionStatus() {
