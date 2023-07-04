@@ -11,10 +11,10 @@
         </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button (click)="requestLocationPermission()" *ngIf="!hasLocation">
+        <button mat-button (click)="requestLocationPermission()" *ngIf="!hasLocationPermission">
             Give location permission
         </button>
-        <button mat-button disabled *ngIf="hasLocation">
+        <button mat-button disabled *ngIf="hasLocationPermission">
             Location permission already granted
         </button>
     </mat-card-actions>

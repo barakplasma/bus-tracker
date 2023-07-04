@@ -5,6 +5,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 
+import { LocationService } from "./location.service";
+
 @Component({
   selector: 'app-location-permission',
   standalone: true,
@@ -13,15 +15,15 @@ import {MatCardModule} from '@angular/material/card';
   styleUrls: ['./location-permission.component.css']
 })
 export class LocationPermissionComponent {
-  hasLocation: boolean = false;
+  hasLocationPermission: boolean = false;
 
-  constructor() {
-    navigator.permissions.query({name:'geolocation'}).then(
-      status => this.hasLocation = status.state === 'granted'
-    )
+  constructor(private locationService: LocationService) {
+    this.locationService = locationService
+    locationService.getPermissionStatus()
+      .then(ps => this.hasLocationPermission = ps)
   }
 
   requestLocationPermission() {
-    navigator.geolocation.watchPosition(console.debug, console.error)
+    this.locationService.requestLocationPermission()
   }
 }

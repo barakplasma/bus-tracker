@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { LocationPermissionComponent } from "./location-permission.component";
+import { CanvasMapComponent } from "./canvas-map/canvas-map.component";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { LocationPermissionComponent } from "./location-permission.component";
     BrowserModule,
     AppRoutingModule,
     HeaderComponent,
-    LocationPermissionComponent
+    LocationPermissionComponent,
+    CanvasMapComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
