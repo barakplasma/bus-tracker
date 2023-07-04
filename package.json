@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production --base-href https://barakplasma.github.io/bus-tracker/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
