@@ -8,6 +8,14 @@ export class LocationService {
   private watcherId?: number;
   private location?: GeolocationPosition;
 
+  constructor() {
+    this.getPermissionStatus().then(s => {
+      if (s) {
+        this.requestLocationPermission()
+      }
+    })
+  }
+
   requestLocationPermission() {
     this.watcherId = navigator.geolocation.watchPosition((p) => {
       console.debug(p);

@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LocationService } from "../location.service";
 
 @Component({
   selector: 'app-canvas-map',
@@ -15,6 +16,10 @@ export class CanvasMapComponent implements AfterViewInit {
   private width = 0;
   private height = 0;
 
+  constructor(private locationService: LocationService) {
+    this.locationService = locationService;
+  }
+
   ngAfterViewInit(): void {
     let mapContext = this.mapElementRef.nativeElement.getContext('2d');
     if (!(mapContext instanceof CanvasRenderingContext2D)) {
@@ -25,6 +30,11 @@ export class CanvasMapComponent implements AfterViewInit {
       this.width = mapContext.canvas.width;
     }
     this.drawStartPoint()
+    this.locationService.getLocation().subscribe(next => {
+      if (next) {
+        this.drawNewLocation(next)
+      }
+    })
   }
 
   drawStartPoint() {
